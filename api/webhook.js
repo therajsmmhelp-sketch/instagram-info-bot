@@ -461,10 +461,14 @@ Powered By RapidAPI`;
 });
 
 
-const PORT = process.env.PORT || 3000;
+if (!process.env.VERCEL) {
 
-app.listen(PORT, () => {
+    const PORT = process.env.PORT || 3000;
 
-    console.log("Server Started");
+    app.listen(PORT, () => {
+        console.log("Server Started");
+    });
 
-});
+}
+
+module.exports = app;
