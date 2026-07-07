@@ -174,7 +174,7 @@ bot.onText(/\/users/, async (msg) => {
     );
 
 });
-if (isVercel) {
+if (process.env.VERCEL) {
 
     app.post("/api/webhook", async (req, res) => {
 
@@ -182,9 +182,9 @@ if (isVercel) {
 
             await bot.processUpdate(req.body);
 
-        } catch (e) {
+        } catch (err) {
 
-            console.error(e);
+            console.error(err);
 
         }
 
