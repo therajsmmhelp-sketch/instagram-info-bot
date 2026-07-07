@@ -178,19 +178,25 @@ if (process.env.VERCEL) {
 
     app.post("/api/webhook", async (req, res) => {
 
-        try {
+    console.log("========== TELEGRAM UPDATE ==========");
+    console.log(JSON.stringify(req.body, null, 2));
 
-            await bot.processUpdate(req.body);
+    try {
 
-        } catch (err) {
+        await bot.processUpdate(req.body);
 
-            console.error(err);
+        console.log("Update Processed");
 
-        }
+    } catch (err) {
 
-        res.sendStatus(200);
+        console.error("Webhook Error");
+        console.error(err);
 
-    });
+    }
+
+    res.status(200).end();
+
+});
 
 }
 
